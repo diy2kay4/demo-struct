@@ -1,0 +1,95 @@
+#include <iostream>
+using namespace std;
+
+struct Diem{
+	int maso;
+	char hoten[30];
+	float monToan, monVatly, monHoahoc;
+	int diemtb;
+};
+int main()
+{
+	Diem point[2];
+	int diemtb = 0, tongdiem = 0;
+	//nhap du lieu cho mang
+	for(int i = 0; i < 3; i++){
+	cout<<"\n Moi ban nhap ma so cua minh :";
+	cin>>point[i].maso;
+	cin.ignore();
+	cout<<"\n Ho ten :";
+	cin.get(point[i].hoten,30);
+	cout<<"\n Diem Mon Toan :";
+	cin>>point[i].monToan;
+	cout<<"\n Diem Mon Vat ly :";
+	cin>>point[i].monVatly;
+	cout<<"\n Diem Mon Hoa hoc :";
+	cin>>point[i].monHoahoc;
+}
+	
+	
+//in ra noi dung cua mang
+for(int i = 0; i < 3;i++){
+	cout<<"\n Ma hoc sinh :"<<point[i].maso;
+	cout<<"\n Ho ten :"<<point[i].hoten;
+	cout<<"\n Diem Mon Toan :"<<point[i].monToan;
+	cout<<"\n Diem Mon Vat ly :"<<point[i].monVatly;
+	cout<<"\n Diem Mon Hoa hoc :"<<point[i].monHoahoc;
+	
+	tongdiem = tongdiem + point[i].monToan + point[i].monVatly + point[i].monHoahoc;
+	diemtb = tongdiem / 3;
+}
+cout<<"\n Diem trung binh cua 3 mon la :"<<diemtb;
+//tim kiem hoc sinh theo ma
+int selectedId = 0, tim = 0, searchIndex = 0;
+cout<<"\n Moi thi sinh nhap ma :";
+cin>>selectedId;
+
+for(int i = 0; i < 3; i++){
+	//truong hop co tim thay du lieu
+	if(point[i].maso==selectedId){
+		tim = 1;                    //doi trang thai cua bien
+		searchIndex = i;
+		break;
+	}
+}
+
+//in ra ket qua
+if(tim==1){
+	cout<<"\n Thi sinh duoc tim thay";
+	cout<<"\n Ma so :"<<point[searchIndex].maso;
+	cout<<"\n Ho ten :"<<point[searchIndex].hoten;
+	cout<<"\n Diem Toan :"<<point[searchIndex].monToan;
+	cout<<"\n Diem Vat ly :"<<point[searchIndex].monVatly;
+	cout<<"\n Diem Hoa hoc :"<<point[searchIndex].monHoahoc;
+	cout<<"\n Diem trung binh mon :"<<point[searchIndex].diemtb;
+}else{
+	cout<<"\n Khong tim thay thi sinh!";
+}
+
+//sap xep thi sinh
+Diem temp;
+
+//sap xep du lieu trong mang
+for(int i = 0; i < 2; i++)
+    for(int j = i+1; j < 3; j++){
+    	if(point[j].diemtb < point[i].diemtb){
+    		temp = point[j];
+    		point[j] = point[i];
+    		point[i] = temp;
+		}
+	}
+	cout<<"\n\nDanh sach thi sinh sap xep theo diem trung binh mon la :";
+	//hien thi mang sau khi sap xep
+	for(int i = 0; i < 3; i++){
+			cout<<"\n Ma hoc sinh :"<<point[i].maso;
+	        cout<<"\n Ho ten :"<<point[i].hoten;
+	        cout<<"\n Diem Mon Toan :"<<point[i].monToan;
+	        cout<<"\n Diem Mon Vat ly :"<<point[i].monVatly;
+	        cout<<"\n Diem Mon Hoa hoc :"<<point[i].monHoahoc;
+	        
+	        tongdiem = tongdiem + point[i].monToan + point[i].monVatly + point[i].monHoahoc;
+	        diemtb = tongdiem/3;
+	
+	 return 0;       
+	}
+}
